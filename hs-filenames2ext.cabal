@@ -1,0 +1,45 @@
+cabal-version:      3.16
+name:               hs-filenames2ext
+version:            0.1.0.0
+synopsis:           Extract file extensions from filenames
+description:        A command-line tool to read filenames from stdin, extract their extensions, and print them to stdout.
+license:            Apache-2.0
+author:             yanagitani
+maintainer:         takanori.yanagitani@gmail.com
+build-type:         Simple
+extra-doc-files:    CHANGELOG.md
+
+common warnings
+    ghc-options: -Wall
+
+library
+    import:           warnings
+    exposed-modules:  GetExtension
+    hs-source-dirs:   src
+    build-depends:
+        base ^>=4.17.2.1,
+        filepath
+    default-language: GHC2021
+
+executable hs-filenames2ext
+    import:           warnings
+    main-is:          Main.hs
+    build-depends:
+        base ^>=4.17.2.1,
+        filepath,
+        hs-filenames2ext
+    hs-source-dirs:   app
+    default-language: GHC2021
+
+test-suite hs-filenames2ext-test
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          TestGetExtension.hs
+    hs-source-dirs:   test
+    build-depends:
+        base ^>=4.17.2.1,
+        filepath,
+        HUnit,
+        hs-filenames2ext
+    default-language: GHC2021
+
